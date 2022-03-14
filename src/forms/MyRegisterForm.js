@@ -4,13 +4,10 @@ import { useFormik } from 'formik';
 import Button from "../components/Button";
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
-// import MenuItem from '@mui/material/MenuItem';
-// import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-
-// let categories=[{id:1,name:"Shirts"},{id:2,name:"Shoes"},{id:3, name:"Hats"}]
+import { AppContext } from '../context/AppContext'
 
 const FormSchema = Yup.object({
     name_first:Yup.string().required("Required"),

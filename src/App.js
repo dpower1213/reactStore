@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './App.css';
 import Button from './components/Button';
 import Error from './components/Error';

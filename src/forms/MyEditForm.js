@@ -10,8 +10,6 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 
-// let categories=[{id:1,name:"Shirts"},{id:2,name:"Shoes"},{id:3, name:"Hats"}]
-
 const FormSchema = Yup.object({
     name_first:Yup.string().required("Required"),
     name_last:Yup.string().required("Required"),

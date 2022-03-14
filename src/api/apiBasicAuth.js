@@ -1,14 +1,23 @@
-import {create} from "apisauce";
+import apiClient from './clientBasicAuth';
+import apiClientTokenAuth from './clientTokenAuth'
 
-import base64 from "base-64";
+const endpoint = "/api/login";
 
-const apiClient = (email, password, cancelToken) => create(
-    {
-        baseURL: window.location.host ==='127.0.0.1'||'localhost' ? "http://127.0.0.1:5000" : '',
-        headers:{
-            Authorization: "Basic "+ base64.encode(email+":"+password)
-        },
-        cancelToken
+export const getUser = async (email, password, cancelToken)=>{
+    let error;
+    let user;
+
+    const response = await apiClient(email, password, cancelToken).get(endpoint);
+    if (response.ok){
+        user=response.data
+    }else if (response.status ===401){
+        error="Invalid Email/Password combo"
+    }else{
+        error = 'An Unexpected Error has Occured. Please Try Again'
     }
-    )
-export default apiClient
+
+    return{
+        error,
+        user,
+    }
+}

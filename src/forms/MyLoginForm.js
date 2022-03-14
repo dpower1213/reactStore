@@ -1,12 +1,14 @@
-import React from 'react'
-import { useFormik } from 'formik';
+import React, {useContext, useState} from 'react'
 import * as Yup from "yup";
-import Button from '@mui/material/Button';
+import { useFormik } from 'formik';
+import Button from '../components/Button';
 import TextField from '@mui/material/TextField';
+import { AppContext } from '../context/AppContext';
+import useLogin from '../hooks/useLogin';
 
 const FormSchema = Yup.object(
     {
-        email: Yup.string().email("Only valid e-mails").required(),
+        email: Yup.string().email("Must be a valid e-mail format").required(),
         password: Yup.string().required()
     }
 )
@@ -16,12 +18,19 @@ const initialValues ={
     password: ""
 }
 
-const handleSubmit=(values)=>{
-    console.log(values)
-}
+// const handleSubmit=(values)=>{
+//     console.log(values)
 
-export default function MyLoginForm() {
-
+export default function LoginForm() {
+    const{setUser} = useContext(AppContext);
+    const [loginCreds, setLoginCreds] = useState({})
+    const [error, setError] = useState('')
+    
+    useLogin(loginCreds, setError, setUser, setLoginCreds)
+    
+    const handleSubmit=async(values)=>{
+        setLoginCreds(values)
+    }
     const formik = useFormik({
         initialValues: initialValues,
         validationSchema:FormSchema,
@@ -56,6 +65,8 @@ export default function MyLoginForm() {
             helperText={formik.touched.password && formik.errors.password}
         />
         <Button type="submit" sx={{width:"100%"}}>Login</Button>
+        {error}
+
     </form>
   )
 }
