@@ -4,27 +4,34 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import useBook from "../hooks/useGetBooks"
 
 export default function ActionAreaCard() {
+  const {book, error} = useBook()
+  
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
+    <>
+    {book?.map((b)=>(
+        
+        <Card sx={{ maxWidth: 345 }}>
+        <CardActionArea>
+          <CardMedia>
+            {{height:'100%'}}
+            <img src= { b.img } sx={{height:'100%', width:"100%"}} variant="rounded"/>
           
-          height="140"
-          image="https://s2982.pcdn.co/wp-content/uploads/2018/11/always-ask-a-man-book-cover.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Title
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            How do i insert book text here?
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+        </CardMedia>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Title
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              How do i insert book text here?
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    ))
+    }
+    </>
   );
 }

@@ -23,6 +23,6 @@ export default function useEditUser(user1) {
                 editUser();
             };
             return ()=>{source.cancel()}
-        },[category]
+        },[user]
     )
 }

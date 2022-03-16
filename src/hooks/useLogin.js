@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import {getUser} from  "../api/apiBasicAuth";
+import {getUser} from  "../api/apiLogin";
 import { CancelToken } from 'apisauce';
 
 export default function useLogin(loginCreds, setError, setUser, setLoginCreds) {

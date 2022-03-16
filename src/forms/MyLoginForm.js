@@ -18,9 +18,6 @@ const initialValues ={
     password: ""
 }
 
-// const handleSubmit=(values)=>{
-//     console.log(values)
-
 export default function LoginForm() {
     const{setUser} = useContext(AppContext);
     const [loginCreds, setLoginCreds] = useState({})
