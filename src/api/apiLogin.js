@@ -11,7 +11,7 @@ export const getUser = async (email, password, cancelToken) =>{
     if (response.ok){
         message = 'O\'tay'
         user=response.data
-        console.log(response.data)
+        console.log(user)
     }else {
         error = 'Error, try again?'
     }

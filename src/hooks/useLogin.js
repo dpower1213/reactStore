@@ -1,5 +1,5 @@
-import {useEffect} from 'react';
-import {getUser} from  "../api/apiLogin";
+import { useEffect } from 'react';
+import { getUser } from  '../api/apiLogin';
 import { CancelToken } from 'apisauce';
 
 export default function useLogin(loginCreds, setError, setUser, setLoginCreds) {
@@ -17,12 +17,12 @@ export default function useLogin(loginCreds, setError, setUser, setLoginCreds) {
             };
 
             if (loginCreds.email && loginCreds.password){
-                login();
+                ;
             };
             return ()=>{
                 source.cancel()
             }
         },
-        [loginCreds, setLoginCreds, setUser,setError]
+        // [loginCreds, setError, setUser, setLoginCreds]
     )
 }

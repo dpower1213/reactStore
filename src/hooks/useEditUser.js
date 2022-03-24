@@ -3,14 +3,13 @@ import { CancelToken } from 'apisauce'
 import { editUser } from '../api/apiEditUser'
 import { AppContext } from '../context/AppContext'
 
-export default function useEditUser(user1) {   
+export default function useEditUser() {   
     let response
     const {user, setAlert} =useContext(AppContext)
 
-    useEffect(
-        ()=>{
+    useEffect(()=>{
             const source = CancelToken.source()
-            const editUser=async()=>{
+            const editUser2=async()=>{
                 response = await editUser(user.token, user.id, source.token);
                 if (response){
                     setAlert({msg:`User Information: ${user.name_first} Edited`, cat:'success'})
@@ -20,7 +19,7 @@ export default function useEditUser(user1) {
                 }
             }
             if(user?.name_first){
-                editUser();
+                editUser2();
             };
             return ()=>{source.cancel()}
         },[user]

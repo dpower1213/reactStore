@@ -5,17 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AppContextProvider from "./context/AppContext";
 import CssBaseline from '@mui/material/CssBaseline';
-// import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <BrowserRouter> */}
+    <BrowserRouter>
         <AppContextProvider>
           <CssBaseline />
           <App />
         </AppContextProvider>
-    {/* </BrowserRouter> */}
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
-);
+)
+
 // reportWebVitals();

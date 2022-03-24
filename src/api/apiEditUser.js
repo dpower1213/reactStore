@@ -2,7 +2,7 @@ import clientTokenAuth from './clientTokenAuth'
 
 const endpoint = 'https://cae-bootstore.herokuapp.com/user';
 
-export const putUser = async (email, password, first_name, Last_name, cancelToken) =>{
+export const editUser = async (email, password, first_name, Last_name, cancelToken) =>{
     let error;
     let message;
     let user;
@@ -11,7 +11,7 @@ export const putUser = async (email, password, first_name, Last_name, cancelToke
     if (response.ok){
         message = 'bueno!'
         user=response.data
-        console.log(response.data)
+        // console.log(response.data)
     }else {
         error = 'Error has Occured. Please Try Again'
     }

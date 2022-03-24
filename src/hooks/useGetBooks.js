@@ -1,19 +1,22 @@
-import {useEffect, useState, useContext } from 'react';
-import {getBooks} from '../api/apiBook';
+import {useEffect, useState } from 'react';
+import { GetBooks9 } from '../api/apiBook';
 import { CancelToken } from 'apisauce';
 
-export default function useBook() {
-    const [book, setBook]=useState({});
+export const useGetBooks2 = ()=>{
+    
+    const [book, setBook]=useState();
     const source = CancelToken.source();
-
+        
     useEffect(()=>{
         (async()=>{
-            const response = await getBooks(book, source.token);
-            setBook(response);
+            const {book} = await GetBooks9(source.token);
+            setBook(book)
+            // console.log(response) 
         })()
         return ()=>{source.cancel()}
-    }
-
+    },[],
+    
     )
-  return book
-}
+    console.log(book);
+    return book;
+};

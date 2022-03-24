@@ -1,14 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import Button from "../components/Button";
-import { useState } from 'react';
 import TextField from '@mui/material/TextField';
-// import MenuItem from '@mui/material/MenuItem';
-// import Select from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
+import { AppContext } from '../context/AppContext';
+import { useEditUser } from '../hooks/useEditUser'
 
 const FormSchema = Yup.object({
     name_first:Yup.string().required("Required"),
@@ -17,15 +13,15 @@ const FormSchema = Yup.object({
     password:Yup.string().required("Required"),
 });
 
-export default function Form({user={name_first:"jacob", name_last:"jingleheimer", email:'z@z.com', password: "z"}}) {
+const initialValues={
+    name_first: '',
+    name_last: '',
+    email: '',
+    password: '',
+}
 
-    const initialValues={
-        name_first: '',
-        name_last: '',
-        email: '',
-        password: '',
-    }
-
+export default function EditForm(){
+    
     const handleSubmit=(values)=>{
         console.log(values)
     }
@@ -98,8 +94,8 @@ export default function Form({user={name_first:"jacob", name_last:"jingleheimer"
         name="password"
         sx={{ mb: 2, mt: 2 }}
         type="text"
-        label="Re Password"
-        placeholder="Re Password"
+        label="ReEnter Password"
+        placeholder="ReEnter Password"
         value={formik.values.password}
         onChange={formik.handleChange}
         error={formik.touched.password && Boolean(formik.errors.password)}
@@ -109,5 +105,5 @@ export default function Form({user={name_first:"jacob", name_last:"jingleheimer"
     <Button type="submit" sx={{ width: "100%" }}>Update User Information</Button>
 
     </form>
-  );
-};
+  )
+}

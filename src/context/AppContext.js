@@ -1,6 +1,6 @@
 import {createContext, useState, useEffect, useReducer} from "react";
-import useGetBooks from '../hooks/useGetBooks'
-import {listReducer, listActions} from "../reducers/readingListReducer";
+import { useGetBooks2 } from '../hooks/useGetBooks'
+import {listReducer, listActions} from "../reducers/listReducer";
 
 export const AppContext = createContext();
 
@@ -13,7 +13,7 @@ const AppContextProvider = ({children})=>{
         }
     }
     
-    const getListFromLS=()=>{
+    const getListFromLS=()=>{                            
         let list = localStorage.getItem('list');
         if(list){
             return JSON.parse(list)
@@ -21,11 +21,11 @@ const AppContextProvider = ({children})=>{
         return []
     }
     
-    let book = useGetBooks()
+    // let book = useGetBooks2()
 
     const [user, _setUser]=useState(getUserFromLS());
     const [alert, setAlert]=useState({});
-    const [list, dispatch]=useReducer(listReducer,getListFromLS())
+    const [list, dispatch]=useReducer(listReducer, getListFromLS())
 
     useEffect(
         ()=>{
@@ -42,12 +42,15 @@ const AppContextProvider = ({children})=>{
         },
         alert,
         setAlert,
-        book,
-        addToList:(book)=>{
-            dispatch({type: listActions.addToList, book})
+        list,
+        addToList:(onebook)=>{
+            dispatch({type: listActions.addToList, onebook})
         },
-        removeFromList:(book)=>{
-            dispatch({type: listActions.removeFromList, book})
+        displayCard:(onebook)=>{
+            dispatch({type: listActions.displayCard, onebook})
+        },
+        removeFromList:(onebook)=>{
+            dispatch({type: listActions.removeFromList, onebook})
         },
         emptyList:()=>{
             dispatch({type: listActions.emptyList})
@@ -61,5 +64,4 @@ const AppContextProvider = ({children})=>{
         </AppContext.Provider>
     )
     }   
-
 export default AppContextProvider

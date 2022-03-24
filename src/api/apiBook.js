@@ -1,21 +1,51 @@
 import apiClientNoAuth from './clientNoAuth'
-// import apiClientTokenAuth from './clientTokenAuth'
 
 const endpoint = 'https://cae-bootstore.herokuapp.com/book'
 
-export const getBooks = async (cancelToken) =>{
+let book; 
+let onebook;
+export const GetBooks9 = async (cancelToken) =>{
     let error;
-    let book;
-
-    const response = await apiClientNoAuth(cancelToken).get(endpoint);
-    if (response.ok){
-        book=response.data.book
-    }else{
-        error = 'An Unexpected Error has Occured. Please Try Again'
-    }
+    let message;
     
-    return{
-        error,
-        book,
-    }
-}
+    const response = await apiClientNoAuth(cancelToken).get(endpoint);
+    book=response.data
+    console.log(book.books)
+    // console.log(response)
+    
+    // if (response.ok){
+        //     // console.log(response.data.books[13])  
+        //     message = 'good'
+        //     console.log(message)
+        
+        // }else{
+            //     error = 'An Unexpected Error has Occured. Please Try Again'
+            // }
+            
+            return {
+                book:book.books,
+            };
+};
+
+export const GetOneBook= async (id, cancelToken) =>{
+    let error;
+    let message;
+    
+    const response = await apiClientNoAuth(cancelToken).get(endpoint+'/'+id);
+    onebook=response.data
+    // console.log(onebook.books)
+    // console.log(response)
+    
+    // if (response.ok){
+        //     // console.log(response.data.books[13])  
+        //     message = 'good'
+        //     console.log(message)
+        
+        // }else{
+            //     error = 'An Unexpected Error has Occured. Please Try Again'
+            // }
+            
+            return {
+                onebook,
+            };
+        };

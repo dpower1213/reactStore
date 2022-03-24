@@ -1,7 +1,7 @@
 import apiClient from './clientBasicAuth';
-import apiClientTokenAuth from './clientTokenAuth'
+// import apiClientTokenAuth from './clientTokenAuth'
 
-const endpoint = './api/apiLogin';
+const endpoint = '../api/apiLogin';
 
 export const apiBasicAuth = async (email, password, cancelToken)=>{
     let error;
@@ -15,7 +15,6 @@ export const apiBasicAuth = async (email, password, cancelToken)=>{
     }else{
         error = 'An Unexpected Error has Occured. Please Try Again'
     }
-
     return{
         error,
         user,

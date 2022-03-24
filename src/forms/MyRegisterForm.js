@@ -2,8 +2,8 @@ import React from 'react'
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import Button from "../components/Button";
-import { useState } from 'react';
 import TextField from '@mui/material/TextField';
+import { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -16,19 +16,19 @@ const FormSchema = Yup.object({
     password:Yup.string().required("Required"),
 });
 
-export default function Form({user={name_first:"jacob", name_last:"jingleheimer", email:'z@z.com', password: "z"}}) {
+const initialValues={
+    name_first: '',
+    name_last: '',
+    email: '',
+    password: '',
+}
 
-    const initialValues={
-        name_first: '',
-        name_last: '',
-        email: '',
-        password: '',
-    }
-
+export default function RegisterForm(){
+    
     const handleSubmit=(values)=>{
         console.log(values)
     }
-
+    
     const formik = useFormik({
         initialValues:initialValues,
         validationSchema:FormSchema,
@@ -97,8 +97,8 @@ export default function Form({user={name_first:"jacob", name_last:"jingleheimer"
         name="password"
         sx={{ mb: 2, mt: 2 }}
         type="text"
-        label="Re Password"
-        placeholder="Re Password"
+        label="ReEnter Password"
+        placeholder="ReEnter Password"
         value={formik.values.password}
         onChange={formik.handleChange}
         error={formik.touched.password && Boolean(formik.errors.password)}
